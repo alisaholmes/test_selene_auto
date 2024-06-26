@@ -14,13 +14,15 @@ def test_complete_todo():
     browser.element(".react-datepicker__month-select").element('[value="5"]').click()
     browser.element(".react-datepicker__day--014").click()
     browser.element("#subjectsInput").type("English").click().press_enter()
-    browser.element('//label[@for="hobbies-checkbox-2"]').click()
+    browser.element('[for="hobbies-checkbox-2"]').click()
     browser.element("#uploadPicture").send_keys(os.path.abspath("woman-face.png"))
     browser.element("#currentAddress").type("Engineer, 14")
     browser.element("#react-select-3-input").type("NCR").press_enter()
     browser.element("#react-select-4-input").type("Delhi").press_enter()
-    browser.element("#submit").click()
-    browser.element("#example-modal-sizes-title-lg").should(be.present)
+    browser.element("#submit").press_enter()
+    browser.element("#example-modal-sizes-title-lg").should(
+        have.text("Thanks for submitting the form")
+    )
     browser.element(".table").all("td").even.should(
         have.exact_texts(
             "Julia Engineer",
